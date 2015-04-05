@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 	char mail_command[100];
 	char pic_command[100];
 
-	sprintf(timestamp,"%d-%d-%d-%02i%02i%02i", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+	sprintf(timestamp,"%d-%02i-%02i-%02i%02i%02i", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 	strcpy(pic_command, PIC_CMD);
 	strcat(pic_command, timestamp);
