@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <wiringPi.h>
 
 #define MAIL_CMD "./scripts/sendmail.sh "
 #define PIC_CMD "./scripts/takepicture.sh "
+#define PIR_PIN 2
 
 
-int main(int argc, char const *argv[])
-{
-
+void takePicAndSend(){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 
@@ -28,6 +28,23 @@ int main(int argc, char const *argv[])
 
 	system(pic_command);
 	system(mail_command);
+}
+
+static int presence=0;
+static void pir_isr (void) { presence = 1; }
+
+int main(int argc, char const *argv[])
+{
+	wiringPiSetup();
+  	pinMode (PIR_PIN, INPUT);
+  	wiringPiISR (PIR_PIN, INT_EDGE_RISING, pir_isr);
+
+  	while(1){
+  		if(presence){
+  			takePicAndSend();
+  			presence = 0;
+  		}
+  	}
 
 	return 0;
 }
