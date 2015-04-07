@@ -1,6 +1,12 @@
 ****README****
 
-You must install wiringPi library in order to compile this project
+You must install wiringPi library in order to compile this project: http://wiringpi.com/download-and-install/
+
+Install and configure mutt (as root) and fswebcam: 
+http://rsppi.blogspot.com.es/2013/01/envio-de-emails-desde-consola-y-con.html 
+http://www.raspberrypi.org/documentation/usage/webcams/
+
+Add execute permission to shellscripts: practica3 $ chmod +x scripts/*
 
 Compilation:  practica3 $ gcc -o main.out bin/main.c -lwiringPi
 Execution:    practica3 $ sudo ./main.out destination1@emailacco.unt,destination2@emailacco.unt,...,destinationN@emailacco.unt
